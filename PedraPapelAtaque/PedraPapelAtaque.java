@@ -1,24 +1,47 @@
-import java.util.*; 
-public class PedraPapelAtaque {
-    public static void main(String[] args) {
-      	Scanner leitor = new Scanner(System.in);
-    	int N = leitor.nextInt();        
-    	String jogador1, jogador2;
+import java.util.Scanner;
 
-        for (int i = 0; i < N; i++) {
-    		jogador1 = leitor.next();
-    		jogador2 = leitor.next();            
-    		
-    		if (jogador1.equalsIgnoreCase("papel") && jogador2.equalsIgnoreCase("papel")) System.out.println("Ambos venceram");
-    		else if (jogador1.equalsIgnoreCase("papel") && jogador2.equalsIgnoreCase("ataque")) System.out.println("Jogador 2 venceu");
-            else if (jogador1.equalsIgnoreCase("papel") && jogador2.equalsIgnoreCase("pedra")) System.out.println("Jogador 2 venceu");
-            else if (jogador1.equalsIgnoreCase("ataque") && jogador2.equalsIgnoreCase("papel")) System.out.println("Jogador 1 venceu");
-    		else if (jogador1.equalsIgnoreCase("ataque") && jogador2.equalsIgnoreCase("pedra")) System.out.println("Jogador 1 venceu");
-    		else if (jogador1.equalsIgnoreCase("ataque") && jogador2.equalsIgnoreCase("ataque")) System.out.println("Aniquilacao mutua");
-    		else if (jogador1.equalsIgnoreCase("pedra") && jogador2.equalsIgnoreCase("ataque")) System.out.println("Jogador 2 venceu");
-            else if (jogador1.equalsIgnoreCase("pedra") && jogador2.equalsIgnoreCase("papel")) System.out.println("Jogador 1 venceu");
-            else System.out.println("Nada acontece");
-    	}
-        leitor.close();        
+public class PedraPapelAtaqueAereo {
+
+    private final static String ATAQUE = "ataque";
+    private final static String PAPEL = "papel";
+    private final static String PEDRA = "pedra";
+    private final static String P1_WIN = "Jogador 1 venceu";
+    private final static String P2_WIN = "Jogador 2 venceu";
+    private final static String BOTH_WIN = "Ambos venceram";
+    private final static String NO_WINNER = "Sem ganhador";
+    private final static String ANIQUILATION = "Aniquilacao mutua";
+
+    public static void main(String[] args) {
+		Scanner sc = new Scanner( System.in );
+        int N = sc.nextInt();
+
+        for ( int i=0; i < N; i++ ) {
+            String p1 = sc.next();
+            String p2 = sc.next();
+
+            System.out.println( jokenpoWinner( p1, p2 ) );
+        }
+        sc.close();
+	}
+
+    /**
+     * Check who is the winner of the game Jokenpo.
+     */
+    public static String jokenpoWinner(String p1, String p2) {
+        String result = P2_WIN;
+
+        if ( p1.equalsIgnoreCase( ATAQUE ) && p2.equalsIgnoreCase( ATAQUE ) ) {
+            result = ANIQUILATION;
+        } else if ( p1.equalsIgnoreCase( PEDRA ) && p2.equalsIgnoreCase( PEDRA ) ) {
+            result = NO_WINNER;
+        } else if ( p1.equalsIgnoreCase( PAPEL ) && p2.equalsIgnoreCase( PAPEL ) ) {
+            result = BOTH_WIN;
+        } else if ( p1.equalsIgnoreCase( ATAQUE ) && p2.equalsIgnoreCase( PEDRA ) || p2.equalsIgnoreCase( PAPEL ) ) {
+            result = P1_WIN;
+        } else if ( p1.equalsIgnoreCase( PEDRA ) && p2.equalsIgnoreCase( PAPEL ) ) {
+            result = P1_WIN;
+        }
+
+        return result;
     }
 }
