@@ -10,10 +10,10 @@ public class SistemaDeValidação {
 		System.out.println("Imprimindo a lista de candidatos, informando o índice do elemento");
 		
 		for(int indice=0; indice < candidatos.length; indice++) {
-			System.out.println("o candidato de nº " + indice + " é " + candidatos[indice]);
+			System.out.println("o candidato de nº " + (indice + 1) + " é " + candidatos[indice]);
 		}
 	}
-	
+
 	static void selecaoCandidatos() {
 		String[] candidatos = {"FELIPE","MARCIA","JULIA","PAULO","AUGUSTO","MONICA","FABRICIO","MIRELA","DANIELA","JORGE"};
 		
