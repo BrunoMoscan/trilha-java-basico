@@ -1,19 +1,24 @@
 package SistemaDeValidação;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
+import java.util.concurrent.*;
 
 public class SistemaDeValidação {
 	public static void main(String[] args) {
-		imprimirSelecionados();		
+		String[] candidatos = {"FELIPE","MARCIA","JULIA","PAULO","AUGUSTO"};
+		for(String candidato: candidatos) {
+			entrandoEmContato(candidato);
+		}
+		
 	}
 	static void imprimirSelecionados() {
 		String[] candidatos = {"FELIPE","MARCIA","JULIA","PAULO","AUGUSTO"};
 		System.out.println("Imprimindo a lista de candidatos, informando o índice do elemento");
 		
 		for(int indice=0; indice < candidatos.length; indice++) {
-			System.out.println("o candidato de nº " + (indice + 1) + " é " + candidatos[indice]);
+			System.out.println("o candidato de nº " + indice + " é " + candidatos[indice]);
 		}
 	}
-
+	
 	static void selecaoCandidatos() {
 		String[] candidatos = {"FELIPE","MARCIA","JULIA","PAULO","AUGUSTO","MONICA","FABRICIO","MIRELA","DANIELA","JORGE"};
 		
@@ -41,5 +46,25 @@ public class SistemaDeValidação {
 		if(salarioBase > salarioPretendido) System.out.println("Ligar para o candidato");
 		else if(salarioBase==salarioPretendido) System.out.println("Ligar para o candidato com contra proposta");
 		else System.out.println("Aguardando resultado dos demais candidatos");
+	}
+	
+	static void entrandoEmContato(String candidato) {
+		int tentativasRealizadas = 1;
+		boolean continuarTentando = true;
+		boolean atendeu = false;
+		do {
+			atendeu = atender();
+			continuarTentando = !atendeu;
+			if(continuarTentando) tentativasRealizadas++;
+			else System.out.println("contato realizado com sucesso");
+						
+		}while(continuarTentando && tentativasRealizadas<3);
+		
+		if(atendeu) System.out.println("Conseguimos contato com " + candidato + " na " + tentativasRealizadas + " tentativa");
+		else System.out.println("Não conseguimos contato com " + candidato + ", número máximo de " + tentativasRealizadas + " tentativas realizadas");
+	}
+	
+	static boolean atender() {
+		return new Random().nextInt(3)==1;
 	}
 }	
