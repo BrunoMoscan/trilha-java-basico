@@ -15,7 +15,7 @@ public class SistemaDeValidação {
 			String candidato = candidatos[candidatosAtual];
 			double salarioPretendido = valorPretendido();
 			
-			System.out.println("O candidato " + candidato + "solicitou este valor de salário " + salarioPretendido);
+			System.out.println("O candidato " + candidato + " solicitou este valor de salário " + salarioPretendido);
 			if(salarioBase >= salarioPretendido) {
 				System.out.println("O candidato " + candidato + " foi selecionado para a vaga");
 				candidatosSelecionados++;
