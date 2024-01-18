@@ -4,11 +4,13 @@ public abstract class Conta implements iConta {
     
     protected int agencia;
     protected int numero;
-    protected double saldo;    
+    protected double saldo;
+    protected Cliente cliente;    
 
-    public void ContaCorrente(){
+    public Conta(Cliente cliente){
         this.agencia = Conta.AGENCIA_PADRAO;
         this.numero = SEQUENCIAL++;
+        this.cliente = cliente;
     }
 
     public int getAgencia() {
@@ -40,6 +42,7 @@ public abstract class Conta implements iConta {
     }
 
     protected void imprimirInfosComuns() {
+        System.out.println(String.format("Agência: %s", this.cliente.getNome()));
         System.out.println(String.format("Agência: %d", this.agencia));
         System.out.println(String.format("Número: %d", this.numero));
         System.out.println(String.format("Saldo: %2f", this.saldo));
